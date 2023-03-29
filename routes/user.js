@@ -1,8 +1,19 @@
 const User = require("../models/User");
-const {verifyToken, verifyTokenAuthorisation} = require("./verifyToken");
+const {verifyToken, verifyTokenAuthorisation, verifyTokenAndAdmin} = require("./verifyToken");
 
 const router = require("express").Router();
 
+// GET USER
+router.delete("/:id", verifyTokenAndAdmin, async (req,res)=>{
+    try{
+        const user = await User.findById(req.params.id);
+        res.status(200).json(user)
+    }catch(error){
+        res.status(500).json(error);
+    }
+});
+
+// UPDATE
 router.put("/:id", verifyTokenAuthorisation, async (req,res)=>{
     if(req.body.password){
         req.body.password = CryptoJS.AES.encrypt(
@@ -19,6 +30,16 @@ router.put("/:id", verifyTokenAuthorisation, async (req,res)=>{
     }catch(error){
         res.status(500).json(error)
     }
-})
+});
+
+// DELETE
+router.delete("/:id", verifyTokenAndAdmin, async (req,res)=>{
+    try{
+        await User.findByIdAndDelete(req.params.id);
+        res.status(200).json("User has been deleted")
+    }catch(error){
+        res.status(500).json(error);
+    }
+});
 
 module.exports = router;
