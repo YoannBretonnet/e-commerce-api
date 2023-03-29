@@ -4,10 +4,21 @@ const {verifyToken, verifyTokenAuthorisation, verifyTokenAndAdmin} = require("./
 const router = require("express").Router();
 
 // GET USER
-router.delete("/:id", verifyTokenAndAdmin, async (req,res)=>{
+router.get("/find/:id", verifyTokenAndAdmin, async (req,res)=>{
     try{
         const user = await User.findById(req.params.id);
-        res.status(200).json(user)
+        const {password, ...others} = user._doc;
+        res.status(200).json({others})
+    }catch(error){
+        res.status(500).json(error);
+    }
+});
+
+// GET ALL USERS
+router.get("/find", verifyTokenAndAdmin, async (req,res)=>{
+    try{
+        const users = await User.find();
+        res.status(200).json(users);
     }catch(error){
         res.status(500).json(error);
     }
