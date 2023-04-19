@@ -37,7 +37,7 @@ app.use("/.netlify/functions/api/users", userRoute);
 app.use("/.netlify/functions/api/products", productRoute);
 app.use("/.netlify/functions/api/carts", cartRoute);
 app.use("/.netlify/functions/api/orders", orderRoute);
-app.use("/.netlify/functions/api//checkout", stripeRoute);
+app.use("/.netlify/functions/api/checkout", stripeRoute);
 
 app.listen(process.env.PORT || 5000, ()=> {
     console.log("server is running")
