@@ -12,6 +12,9 @@ const orderRoute = require("./routes/order");
 const stripeRoute = require("./routes/stripe")
 const cors = require("cors");
 
+app.use(express.json());
+app.use(cors());
+
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -36,8 +39,7 @@ app.get("/", async (request, response) => {
   response.send({ hello: "world" });
 });
 
-app.use(cors());
-app.use("/.netlify/functions/api", router);
+
 app.use("/.netlify/functions/api/auth", authRoute);
 app.use("/.netlify/functions/api/users", userRoute);
 app.use("/.netlify/functions/api/products", productRoute);
