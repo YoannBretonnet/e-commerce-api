@@ -1,6 +1,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const app = express();
+const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/user");
@@ -31,13 +32,13 @@ mongoose
 })
 
 app.use(cors());
-app.use(express.json());
-app.use("/.netlify/functions/api/auth", authRoute);
-app.use("/.netlify/functions/api/users", userRoute);
-app.use("/.netlify/functions/api/products", productRoute);
-app.use("/.netlify/functions/api/carts", cartRoute);
-app.use("/.netlify/functions/api/orders", orderRoute);
-app.use("/.netlify/functions/api/checkout", stripeRoute);
+app.use("/.netlify/functions/api", router);
+app.use("/.netlify/functions/routes/auth", authRoute);
+app.use("/.netlify/functions/routes/users", userRoute);
+app.use("/.netlify/functions/routes/products", productRoute);
+app.use("/.netlify/functions/routes/carts", cartRoute);
+app.use("/.netlify/functions/routes/orders", orderRoute);
+app.use("/.netlify/functions/routes/checkout", stripeRoute);
 
 app.listen(process.env.PORT || 5000, ()=> {
     console.log("server is running")
