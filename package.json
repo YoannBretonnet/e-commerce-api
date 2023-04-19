@@ -4,8 +4,7 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "start": "nodemon api.js",
-    "build": "netlify deploy --prod"
+    "start": "nodemon api.js"
   },
   "keywords": [],
   "author": "",
