@@ -31,6 +31,11 @@ mongoose
     console.log(error)
 })
 
+app.get("/", async (request, response) => {
+  console.log("hey");
+  response.send({ hello: "world" });
+});
+
 app.use(cors());
 app.use("/.netlify/functions/api", router);
 app.use("/.netlify/functions/api/auth", authRoute);
