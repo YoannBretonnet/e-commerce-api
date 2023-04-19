@@ -2,10 +2,10 @@
   "name": "ecommerceapi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "build": "netlify-lambda build src"
+    "start": "nodemon api.js",
+    "build": "netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
