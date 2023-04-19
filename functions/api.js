@@ -1,5 +1,5 @@
 const express = require("express");
-const serveless = require("serveless-http");
+const serverless = require("serverless-http");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -43,4 +43,4 @@ app.listen(process.env.PORT || 5000, ()=> {
     console.log("server is running")
 })
 
-module.exports.handler = serveless(app);
+module.exports.handler = serverless(app);
