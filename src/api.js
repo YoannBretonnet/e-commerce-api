@@ -1,16 +1,16 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const app = express();
-const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
+
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const stripeRoute = require("./routes/stripe")
-const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
@@ -38,7 +38,6 @@ app.get("/", async (request, response) => {
   console.log("hey");
   response.send({ hello: "world" });
 });
-
 
 app.use("/.netlify/functions/api/auth", authRoute);
 app.use("/.netlify/functions/api/users", userRoute);
