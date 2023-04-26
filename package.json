@@ -5,7 +5,7 @@
   "main": "api.js",
   "scripts": {
     "start": "nodemon ./src/api.js",
-   "build": "yarn build"
+   "build": "npm run webpack"
   },
   "keywords": [],
   "author": "",
